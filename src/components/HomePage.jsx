@@ -47,15 +47,15 @@ const SERVICES = [
       "Remove steering vibration and prevent uneven tyre wear with digital balancing.",
     highlights: ["Digital calibration", "Vibration diagnostics", "Weight optimization"],
   },
-  {
-    id: "alignment",
-    icon: "🔄",
-    title: "3D wheel alignment",
-    category: "maintenance",
-    description:
-      "Laser-guided alignment for better stability, fuel efficiency and longer tyre life.",
-    highlights: ["3D laser accuracy", "Full suspension check", "Printed report"],
-  },
+  // {
+  //   id: "alignment",
+  //   icon: "🔄",
+  //   title: "3D wheel alignment",
+  //   category: "maintenance",
+  //   description:
+  //     "Laser-guided alignment for better stability, fuel efficiency and longer tyre life.",
+  //   highlights: ["3D laser accuracy", "Full suspension check", "Printed report"],
+  // },
   {
     id: "inspection",
     icon: "🛠️",
@@ -228,23 +228,30 @@ function Home() {
             </div>
 
             <div className="relative lg:col-span-5">
-              <div className="relative mx-auto max-w-md lg:max-w-none">
-                <img
-                  src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=1200&q=85"
-                  alt="Mechanic servicing a car tyre"
-                  className="h-64 w-full rounded-3xl object-cover shadow-xl ring-4 ring-white sm:h-96 lg:h-[460px]"
-                />
-                <div className="absolute -bottom-5 left-4 flex items-center gap-3 rounded-2xl border border-sky-100 bg-white p-3 shadow-lg sm:left-6 sm:p-4">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-100 text-xl">
-                    ⚙️
-                  </span>
-                  <div>
-                    <p className="text-sm font-bold text-slate-900">3D laser alignment</p>
-                    <p className="text-xs text-slate-500">Latest diagnostic tech</p>
-                  </div>
+            <div className="mx-auto max-w-md lg:max-w-none">
+              <img
+                src="/tyre-images/compressor.jpeg"
+                alt="Belt-driven reciprocating air compressor in the workshop"
+                className="h-64 w-full rounded-3xl object-cover shadow-xl ring-4 ring-white sm:h-96 lg:h-[420px]"
+              />
+
+              <div className="relative z-10 -mt-10 mx-3 flex items-start gap-3 rounded-2xl border border-sky-100 bg-white p-4 shadow-lg sm:mx-5 sm:gap-4 sm:p-5">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky-100 text-xl">
+                  ⚙️
+                </span>
+                <div className="min-w-0">
+                  <p className="text-sm font-bold leading-snug text-slate-900 sm:text-base">
+                    Belt-driven reciprocating air compressor
+                  </p>
+                  <p className="mt-1 text-xs leading-5 text-slate-600 sm:text-sm sm:leading-6">
+                    Electric-powered, multi-cylinder piston compressor on a horizontal storage tank. Its
+                    high-pressure output and large tank suit demanding workshop work, such as inflating
+                    truck and lorry tyres.
+                  </p>
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </section>
 
@@ -446,7 +453,7 @@ function Home() {
 
                 <div className="mt-6 flex flex-col gap-3">
                   <a
-                    href="https://maps.google.com"
+                    href="https://goo.gl/maps/Gt7kseUW7WwF6YYp7?g_st=aw"
                     target="_blank"
                     rel="noreferrer"
                     className={`inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-sky-600 px-5 font-bold text-white transition hover:bg-sky-700 ${focusRing}`}
