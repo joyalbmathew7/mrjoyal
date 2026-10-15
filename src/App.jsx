@@ -1,10 +1,10 @@
-import React from 'react';
-import HomePage from "./components/HomePage"; // Fixed slash and spelling
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./components/HomePage";
+
 export default function App() {
   return (
-    <div className="max-w-5xl mx-auto p-4">
-      <HomePage />
-    </div>
+    <Routes>
+      <Route path="/*" element={<HomePage />} />
+    </Routes>
   );
 }
-

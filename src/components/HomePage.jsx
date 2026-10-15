@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TyreCarousel from "./TyreCarousel";
-
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 const PHONE_DISPLAY = "+91 9778171305";
 const PHONE_LINK = "tel:+919778171305";
 
 const NAV_LINKS = [
-  { href: "#about", label: "About" },
-  { href: "#gallery", label: "Gallery" },
-  { href: "#services", label: "Services" },
-  { href: "#why-us", label: "Why us" },
-  { href: "#contact", label: "Contact" },
+  { to: "/about", label: "About" },
+  { to: "/gallery", label: "Gallery" },
+  { to: "/services", label: "Services" },
+  { to: "/why-us", label: "Why us" },
+  { to: "/contact", label: "Contact" },
 ];
 
 const TABS = [
@@ -94,18 +95,26 @@ const focusRing =
 function Home() {
   const [activeTab, setActiveTab] = useState("all");
   const [menuOpen, setMenuOpen] = useState(false);
+  const { pathname } = useLocation();
 
   const filteredServices =
     activeTab === "all" ? SERVICES : SERVICES.filter((s) => s.category === activeTab);
 
   const closeMenu = () => setMenuOpen(false);
 
+useEffect(() => {
+  if (pathname === "/") {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
+  document.getElementById(pathname.slice(1))?.scrollIntoView({ behavior: "smooth" });
+}, [pathname]);
   return (
     <div className="min-h-screen scroll-smooth bg-sky-50 pb-20 text-slate-700 antialiased md:pb-0">
       {/* ===== Header ===== */}
       <header className="sticky top-0 z-40 border-b border-sky-100 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
-          <a href="#top" className={`flex items-center gap-3 rounded-lg ${focusRing}`}>
+          <Link to="/" className={`flex items-center gap-3 rounded-lg ${focusRing}`}>
             <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-500 text-xl text-white shadow-sm">
               🛞
             </span>
@@ -115,17 +124,18 @@ function Home() {
               </span>
               <span className="block text-xs text-slate-500">Service & care</span>
             </span>
-          </a>
+          </Link>
 
           <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
             {NAV_LINKS.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
+              <Link
+                key={l.to}
+                to={l.to}
                 className={`rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-sky-50 hover:text-sky-700 ${focusRing}`}
               >
                 {l.label}
-              </a>
+                 </Link>
+              
             ))}
           </nav>
 
@@ -160,14 +170,14 @@ function Home() {
           >
             <ul className="space-y-1">
               {NAV_LINKS.map((l) => (
-                <li key={l.href}>
-                  <a
-                    href={l.href}
+                <li key={l.to}>
+                  <Link
+                    to={l.to}
                     onClick={closeMenu}
                     className={`block rounded-xl px-4 py-3 text-base font-semibold text-slate-700 hover:bg-sky-50 ${focusRing}`}
                   >
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -198,18 +208,17 @@ function Home() {
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href="#services"
+                <Link to="/services"
                   className={`inline-flex min-h-[48px] items-center justify-center rounded-xl bg-sky-600 px-7 py-3 text-base font-bold text-white shadow-md shadow-sky-600/20 transition hover:bg-sky-700 ${focusRing}`}
                 >
                   View services
-                </a>
-                <a
-                  href="#contact"
+                </Link>
+                <Link
+                  to="/contact"
                   className={`inline-flex min-h-[48px] items-center justify-center rounded-xl border border-sky-300 bg-white px-7 py-3 text-base font-bold text-sky-700 transition hover:bg-sky-50 ${focusRing}`}
                 >
                   Visit the workshop
-                </a>
+                </Link>
               </div>
 
               <dl className="mt-10 grid max-w-lg grid-cols-3 gap-3 sm:gap-6">
@@ -373,12 +382,12 @@ function Home() {
                     </ul>
                   </div>
 
-                  <a
-                    href="#contact"
+                  <Link
+                    to="/contact"
                     className={`mt-6 inline-flex min-h-[44px] items-center justify-center rounded-xl bg-sky-50 px-4 text-sm font-bold text-sky-700 transition hover:bg-sky-100 ${focusRing}`}
                   >
                     Book this service
-                  </a>
+                  </Link>
                 </article>
               ))}
             </div>
@@ -479,9 +488,9 @@ function Home() {
           <p className="text-sm text-slate-500">
             © {new Date().getFullYear()} Bharat Tyres. All rights reserved.
           </p>
-          <a href="#top" className={`rounded-lg px-2 py-1 text-sm font-semibold text-sky-700 hover:underline ${focusRing}`}>
+          <Link to="/" className={`rounded-lg px-2 py-1 text-sm font-semibold text-sky-700 hover:underline ${focusRing}`}>
             Back to top ↑
-          </a>
+          </Link>
         </div>
       </footer>
 
@@ -494,12 +503,11 @@ function Home() {
           >
             📞 Call
           </a>
-          <a
-            href="#contact"
+          <Link to="/contact"
             className={`flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-xl border border-sky-300 bg-sky-50 font-bold text-sky-700 ${focusRing}`}
           >
             📍 Location
-          </a>
+          </Link>
         </div>
       </div>
     </div>
