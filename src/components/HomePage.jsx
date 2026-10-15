@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 const PHONE_DISPLAY = "+91 9778171305";
 const PHONE_LINK = "tel:+919778171305";
-
+const WHATSAPP_LINK =
+  "https://wa.me/919778171305?text=" + encodeURIComponent("Hi, I need a tyre quote");
 const NAV_LINKS = [
   { to: "/about", label: "About" },
   { to: "/gallery", label: "Gallery" },
@@ -510,6 +511,17 @@ useEffect(() => {
           </Link>
         </div>
       </div>
+      {/* ===== WhatsApp floating button ===== */}
+      <a
+        href={WHATSAPP_LINK}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Chat on WhatsApp"
+        className={`fixed bottom-24 right-4 z-40 inline-flex items-center gap-2 rounded-full bg-emerald-500 px-4 py-3 font-bold text-white shadow-lg transition hover:bg-emerald-600 md:bottom-6 md:right-6 ${focusRing}`}
+      >
+        <span aria-hidden="true">💬</span>
+        <span className="hidden sm:inline">Chat on WhatsApp</span>
+      </a>
     </div>
   );
 }
